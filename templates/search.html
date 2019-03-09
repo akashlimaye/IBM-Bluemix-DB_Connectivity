@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>{% block head %}
+	<title>{% block head %}{% end block %}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="./static/stylesheets/style.css" />
+	{% end block %}
+</head>
+<body>
+	{% for city in ci %}
+  <h1>{{city["NAME"]}}</h1>
+  <p>The city of <b>{{city["NAME"]}}</b> ({{city["VEHICLE"]}}) is located in <b>{{city["GRADE"]}}</b> within the timezone <b>{{city["ROOM"]}}</b>.
+    It has a population of <b>{{city["POPULATION"]}}</b>. </p>
+  {# If there are alternate names, split them to format them nicely #}
+  {% if city["ALTERNATENAMES"] %}
+    The following alternative names are in use:
+    <p>{% set namelist = (city["ALTERNATENAMES"]).split(',') %}
+      {% for name in namelist %}
+      {{ name }} //
+      {% endfor %}</p>
+  {% endif %}
+
+  <h4>Location Information</h4>
+  <p>Latitude: {{city["LATITUDE"]}}<p>
+  <p>Longitude: {{city["LONGITUDE"]}}<p>
+  <p>Elevation: {{city["DEM"]}}</p>
+  
+
+
+{% endfor %}
+<form action="/functions">
+	<input type="image" src="./static/images/arrow.png" />
+</form>
+</body>
+</html>

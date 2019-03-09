@@ -1,0 +1,7 @@
+applications:
+- name: ALAssn1
+  memory: 128M
+  command: python ALAssn1.py
+  random-route: true
+  services: 
+    - sqldatabase
